@@ -12,8 +12,15 @@ new dev branch
 
 
 
+<<<<<<< HEAD
 this is created by master branch
 
 
 
+=======
+this is created by dev branch
+>>>>>>> dev
 
+
+
+ 
