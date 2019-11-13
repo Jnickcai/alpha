@@ -1,19 +1,27 @@
 #include "led.h"
 
 
+
 /*initialize led*/
 void led_init(void)
 {
-    /*initialize IO reuse
-    configure attribute for IO
-    */
-    SW_MUX_GPIO1_IO03  = 0x5;
-    SW_PAD_GPIO1_IO03  = 0x10b0;
     
-    /*Initialize gpio, gpio 1 _ io03 to output*/
-    GPIO1_GDIR = 0X0000008;
-    /*set LED for low,open led*/
-    GPIO1_DR   = 0x0;
+/* 1、初始化 IO 复用 */
+IOMUXC_SetPinMux(IOMUXC_GPIO1_IO03_GPIO1_IO03,0);
+
+ /* 2、、配置 GPIO1_IO03 的 IO 属性
+ *bit 16:0 HYS 关闭
+ *bit [15:14]: 00 默认下拉
+ *bit [13]: 0 kepper 功能
+ *bit [12]: 1 pull/keeper 使能
+ *bit [11]: 0 关闭开路输出
+ *bit [7:6]: 10 速度 100Mhz
+ *bit [5:3]: 110 R0/6 驱动能力
+ *bit [0]: 0 低转换率
+*/
+IOMUXC_SetPinConfig(IOMUXC_GPIO1_IO03_GPIO1_IO03,0X10B0);
+
+
 }
 /*
 *Control the led0 switch.
