@@ -28,8 +28,7 @@ OBJS 			:=$(patsubst %, OBJ/%, $(notdir $(OBJS:.s=.o)))
 
 OBJ_S			:=$(OBJC)$(OBJS)
 
-
-
+VPATH := $(SRCDIRS)
 
 .PHONY:print clear download 
 
