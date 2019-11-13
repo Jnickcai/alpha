@@ -13,7 +13,7 @@ INCDIRS 		:=	IMX6ULL \
 					PRO	\
 					BSP/LED \
 					BSP/BEEP \
-					BSP/KEY \
+					BSP/GPIO \
 					BSP/DELAY 
 
 SRCDIRS			:=	IMX6ULL \
