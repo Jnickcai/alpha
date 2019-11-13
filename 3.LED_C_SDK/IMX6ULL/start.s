@@ -4,7 +4,7 @@
 
 .global _start  /* */
 
-    _start :
+_start :
    /*set CPU to SVC mode */
    mrs r0 ,cpsr
    bic r0 ,r0 ,#0x1f
