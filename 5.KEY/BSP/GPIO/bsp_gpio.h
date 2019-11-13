@@ -27,7 +27,9 @@ typedef struct gpio_pin_config
 
 
 
-void gpio_init(void);
+void gpio_init(GPIO_Type *GPIO,int pin,gpio_pin_config_t *config);  //初始化GPIO
+int gpio_read_pin(GPIO_Type *GPIO,int pin);     //读取GPIO电平
+void gpio_writte_pin(GPIO_Type *GPIO,int pin,gpio_pin_level_t value);   //设置GPIO引脚输出电平
 
 
 
