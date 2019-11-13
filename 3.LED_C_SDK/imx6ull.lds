@@ -2,8 +2,8 @@ SECTIONS{
 	. = 0X87800000;
 	.text :
 	{
-		start.o 
-		main.o
+		OBJ/start.o 
+		OBJ/main.o
 		*(.text)
 	}
 	.rodata ALIGN(4) : {*(.rodata*)}     
