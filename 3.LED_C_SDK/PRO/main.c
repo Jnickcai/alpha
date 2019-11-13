@@ -10,9 +10,9 @@ int main(void)
     while(1)
     {
         Switch_Led (ON);
-        delay_ms(100);
+        delay_ms(500);
         Switch_Led (OFF);
-        delay_ms(100);
+        delay_ms(500);
     }
     return 0;
 }

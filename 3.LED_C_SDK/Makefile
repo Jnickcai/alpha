@@ -54,4 +54,4 @@ clear :
 	rm -rf $(TARGET).elf $(TARGET).dis $(TARGET).bin $(OBJS) $(OBJC)
 
 download:
-	./imxdownload led.bin /dev/sdb
+	./imxdownload $(TARGET).bin /dev/sdb
