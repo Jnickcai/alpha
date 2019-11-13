@@ -13,6 +13,7 @@ INCDIRS 		:=	IMX6ULL \
 					PRO	\
 					BSP/LED \
 					BSP/BEEP \
+					BSP/KEY \
 					BSP/GPIO \
 					BSP/DELAY 
 
@@ -21,6 +22,7 @@ SRCDIRS			:=	IMX6ULL \
 					BSP/LED \
 					BSP/BEEP \
 					BSP/KEY \
+					BSP/GPIO \
 					BSP/DELAY 
 
 INCLUDE			:=$(patsubst %,-I %,$(INCDIRS))  						#	为包含路径前面加	—I
