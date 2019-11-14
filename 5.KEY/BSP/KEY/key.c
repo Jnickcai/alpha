@@ -33,19 +33,19 @@ void key_init()
  int key_getvalue(void)
  {
     int ret = 0;
-    //static unsigned char release = 1; /* 按键松开 */
+    static unsigned char release = 1; /* 按键松开 */
 
-    if(gpio_read_pin(GPIO1, 18) == 0) /* KEY0 按下 */
+    if(release == 1 && gpio_read_pin(GPIO1, 18) == 0) /* KEY0 按下 */
     {
         delay_ms(10); /* 延时消抖  */
-    //    release = 0; /* 标记按键按下 */
+        release = 0; /* 标记按键按下 */
         if(gpio_read_pin(GPIO1, 18) == 0)
         ret = KEY0_VALUE;
     }
     else if(gpio_read_pin(GPIO1, 18) == 1) /* KEY0 未按下 */
     {
         ret = 0;
-        //release = 1; /* 标记按键释放 */
+        release = 1; /* 标记按键释放 */
     }
     return ret;
 }

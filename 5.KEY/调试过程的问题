@@ -1,0 +1,12 @@
+1.
+led_status = 0
+
+原思路是500ms反转一次  于是使用 led_status = ～led_status
+
+结果  0取反为0xffffffff             所以LED亮一次后一直熄灭
+
+
+2.return ((GPIO->DR & (1<<pin))>>pin);    写成了    return ((GPIO->DR &= (1<<pin))>>pin); 
+
+读取按键时错误写了LED引脚，LED不受控制。   读写寄存器是应该小心
+

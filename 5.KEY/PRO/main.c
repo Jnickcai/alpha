@@ -24,10 +24,11 @@ int main(void)
             beep_switch(OFF); 
         }
         i++;
-        if(i > 20)
+        if(i > 10)
         {
             Switch_Led (led_status);
-            led_status = ~led_status;
+            if(led_status == 0 )    led_status = 1;
+            else                    led_status = 0;
             i=0;
         }
         delay_ms(50);
