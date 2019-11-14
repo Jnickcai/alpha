@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"led.h": "c",
+			"beep.h": "c"
+		}
+	}
+}
