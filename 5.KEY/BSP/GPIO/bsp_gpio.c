@@ -31,7 +31,7 @@ void gpio_init(GPIO_Type *GPIO,int pin,gpio_pin_config_t *config)
 */
 int gpio_read_pin(GPIO_Type *GPIO,int pin)
 {
-    return (GPIO->DR & (1<<pin)>>pin);       
+    return ((GPIO->DR & (1<<pin))>>pin);       
 }
 
 

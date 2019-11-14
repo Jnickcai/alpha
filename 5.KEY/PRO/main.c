@@ -27,8 +27,8 @@ int main(void)
         if(i > 20)
         {
             Switch_Led (led_status);
-           led_status = ~led_status;
-           i=0;
+            led_status = ~led_status;
+            i=0;
         }
         delay_ms(50);
     }
