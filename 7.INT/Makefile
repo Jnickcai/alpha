@@ -15,6 +15,7 @@ INCDIRS 		:=	IMX6ULL \
 					BSP/GPIO \
 					BSP/DELAY \
 					BSP/INT \
+					BSP/EXTI \
 					BSP/SYS_CLOCK \
 
 
@@ -26,6 +27,7 @@ SRCDIRS			:=	IMX6ULL \
 					BSP/GPIO \
 					BSP/DELAY \
 					BSP/INT \
+					BSP/EXTI \
 					BSP/SYS_CLOCK \
 
 INCLUDE			:=$(patsubst %,-I %,$(INCDIRS))  						#	为包含路径前面加	—I

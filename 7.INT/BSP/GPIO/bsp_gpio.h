@@ -46,6 +46,7 @@ void gpio_writte_pin(GPIO_Type *GPIO,int pin,gpio_pin_level_t value);   //设置
 void gpio_enable(GPIO_Type *base,unsigned int pin);         /*使能指定IO中断*/
 void gpio_disable(GPIO_Type *base,unsigned int pin);        /*失能指定IO中断*/
 void gpio_clearintflags(GPIO_Type *base,unsigned int pin);  /*清除中断标志位*/
+void gpio_intconfig(GPIO_Type *base,unsigned int pin,gpio_interrupt_mode_t pin_int_mode);   /*GPIO中断初始化函数*/
 
 
 #endif //__BSP_GPIO_H

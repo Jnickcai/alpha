@@ -20,6 +20,7 @@ void gpio_init(GPIO_Type *GPIO,int pin,gpio_pin_config_t *config)
         GPIO->GDIR |= 1<<pin;  /*设置为输出 */
         gpio_writte_pin(GPIO,pin,config->output_logic);
     }  
+    gpio_intconfig(GPIO,pin,config->int_mode);
 }
 
 
@@ -85,7 +86,7 @@ void gpio_intconfig(GPIO_Type *base,unsigned int pin,gpio_interrupt_mode_t pin_i
     uint32_t icrShift;
 
     icrShift = pin;
-    base -> EDGE_SEL &= ~(1 << pin);
+    base -> EDGE_SEL &= ~(1 << pin);    //清除EDGE_SEL。使边沿设置有效。
 
     if (pin < 16)
     {
@@ -98,8 +99,27 @@ void gpio_intconfig(GPIO_Type *base,unsigned int pin,gpio_interrupt_mode_t pin_i
     }
     switch (pin_int_mode)
     {
-        case kgpio_IntLowLevel :
-            icr &= ~
+        case kgpio_IntLowLevel :    //低电平触发
+            *icr &= ~(3 << (icrShift * 2));     //清零要设置的位
+        break;
+
+        case kgpio_IntHighLevel :   //高电平触发
+            *icr &= ~(3 << (icrShift * 2));     //清零要设置的位
+            *icr |=(1 <<((icrShift * 2)));
+        break;
+
+        case kgpio_IntRiseingEdge : //上升沿触发
+            *icr &= ~(3 << (icrShift * 2));     //清零要设置的位
+            *icr |=(2 <<((icrShift * 2)));
+        break;
+
+        case kgpio_IntfailEgde :    //下降沿触发
+            *icr &= ~(3 << (icrShift * 2));     //清零要设置的位
+            *icr |=(3 <<((icrShift * 2)));
+        break;
+
+        case kgpio_IntRiseingFailEgde : //上升沿下降沿触发
+             base -> EDGE_SEL |= (1 << pin);    //设置相应位置，双边沿检测有效。
         break;
 
         default:

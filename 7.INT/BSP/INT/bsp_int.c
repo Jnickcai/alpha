@@ -47,7 +47,7 @@ void system_irqhandler(unsigned int gicciar)
     irq_Nesting ++ ;//中断套嵌加一
     /*根据中断ID，读取中断处理函数，然后执行*/
     irqTable[intNum].irqHandler(intNum,irqTable[intNum].userparam);
-    irq_Nesting ++ ;//中断套嵌减一
+    irq_Nesting -- ;//中断套嵌减一
 }
 
 /*默认中断处理函数*/
