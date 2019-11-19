@@ -56,7 +56,17 @@ void delay_ms(volatile unsigned int n)      //must add volatile ,Prevention of C
 {
     while(n--)
     {
-       volatile unsigned int i = 0x7ff;
-        while(i--);
+       delay_us(1000);
     }
+}
+
+
+/*
+* @description : 短时间延时函数
+* @param - n : 要延时循环次数(空操作循环次数，模式延时)
+* @return : 无
+*/
+void delay_short(volatile unsigned int n)
+{
+    while(n--){}
 }

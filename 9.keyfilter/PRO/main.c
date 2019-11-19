@@ -8,6 +8,7 @@
 #include "bsp_exti.h"
 #include "epit.h"
 #include "key_filter.h"
+#include "delay.h"
 
 
 int main(void)
@@ -20,6 +21,7 @@ int main(void)
     key_filter_init();  //按键初始化，定时器消抖
     led_init();         //LED初始化
     beep_init();
+    delay_init();       //GPT1  延时
     while(1)
     {   
         Switch_Led (led_status);
@@ -28,3 +30,4 @@ int main(void)
     }
     return 0;
 }
+

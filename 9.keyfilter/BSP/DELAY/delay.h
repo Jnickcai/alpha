@@ -15,6 +15,9 @@
 
 void sys_init(void);
 
+void delay_init();
+void delay_us(unsigned int delay_us);
+void delay_short(volatile unsigned int n);
 void delay_ms(volatile unsigned int n);
 
 
