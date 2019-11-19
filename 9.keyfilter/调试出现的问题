@@ -1,9 +1,4 @@
-    EPIT1->LR = Load_Value;        /* 加载寄存器值 */
+GPIO 中断使能没开启
 
-    写成了
-        
-    EPIT1->LR |= Load_Value;        /* 加载寄存器值 */
 
-    因为默认为0xFFFFFFFF
-
-    所以赋值不成功
+GPIO中断使能标志位没清除。导致程序卡死。

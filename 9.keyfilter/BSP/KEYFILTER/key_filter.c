@@ -19,8 +19,9 @@ void key_filter_init(void)
 
     gpio_init(GPIO1,18,&key_config);    //初始化GPIO，输出 下降沿触发
 
-    filtertimer_init(0,66000000/2);
-
+    filtertimer_init(0,66000000/100);
+    gpio_enable(GPIO1, 18); /* 使能 GPIO1_IO18 的中断功能 */
+    
     GIC_EnableIRQ(GPIO1_Combined_16_31_IRQn);
     system_register_irqhandler(GPIO1_Combined_16_31_IRQn,(system_irphandler_t)keyfilter_gpio1_16_31_irqhandler,NULL);
 
@@ -102,5 +103,5 @@ void Irq_Epit1_keyfilter__Hander(unsigned int gicciar ,void *param)
 void keyfilter_gpio1_16_31_irqhandler (void)
 {
     filtertimer_restart(66000000/100);
-    EPIT1->SR |= 1<<0; /*清除中断标志位 */
+    gpio_clearintflags(GPIO1, 18); /* 清除中断标志位 */
 }
