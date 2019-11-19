@@ -18,8 +18,10 @@ int main(void)
     sys_colock_init();  //主频初始化
     sys_init();         //打开所有时钟开关
     led_init();         //LED初始化
-    epit_init(0, 66000000/10);//定时器初始化    led 100ms
+    epit_init(0, 66000000/10);//定时器初始化
     usrt1_init(); //串口初始化
+    key_filter_init();  //按键初始化，定时器消抖
+    beep_init();
     while(1)
     {   
         Uart_Send_String("请输入一个字符");

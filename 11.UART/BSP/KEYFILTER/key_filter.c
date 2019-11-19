@@ -35,7 +35,7 @@ void filtertimer_init(unsigned int prescalar,unsigned int Load_Value)
         prescalar = 0xFFF;
     }
 
-    EPIT1->CR = 0; /* 先清零 CR 寄存器 */
+    EPIT2->CR = 0; /* 先清零 CR 寄存器 */
     /*
     * CR 寄存器:
     * bit25:24 01 时钟源选择 Peripheral clock=66MHz
@@ -45,13 +45,13 @@ void filtertimer_init(unsigned int prescalar,unsigned int Load_Value)
     * bit1: 1 初始计数值来源于 LR 寄存器值
     * bit0: 0 先关闭 EPIT1
     */
-    EPIT1->CR |= (0x01 << 24) | (prescalar << 4) | (0x01 << 3) | (0x01 << 2) | (0x01 << 1) ;
-    EPIT1->LR = Load_Value;        /* 加载寄存器值 */
-    EPIT1->CMPR = 0;                /* 比较寄存器值 */
+    EPIT2->CR |= (0x01 << 24) | (prescalar << 4) | (0x01 << 3) | (0x01 << 2) | (0x01 << 1) ;
+    EPIT2->LR = Load_Value;        /* 加载寄存器值 */
+    EPIT2->CMPR = 0;                /* 比较寄存器值 */
 
-    GIC_EnableIRQ(EPIT1_IRQn);      //使能相应中断位
+    GIC_EnableIRQ(EPIT2_IRQn);      //使能相应中断位
 
-    system_register_irqhandler(EPIT1_IRQn,Irq_Epit1_keyfilter__Hander,NULL);   //注册中断处理函数
+    system_register_irqhandler(EPIT2_IRQn,Irq_Epit2_keyfilter__Hander,NULL);   //注册中断处理函数
 
 }
 
@@ -63,7 +63,7 @@ void filtertimer_init(unsigned int prescalar,unsigned int Load_Value)
 */
 void filtertimer_stop(void)
 {
-    EPIT1->CR &= ~(1<<0); /* 关闭定时器 */
+    EPIT2->CR &= ~(1<<0); /* 关闭定时器 */
 }
 
 
@@ -75,17 +75,17 @@ void filtertimer_stop(void)
 */
 void filtertimer_restart(unsigned int value)
 {
-    EPIT1->CR &= ~(1<<0); /* 先关闭定时器 */
-    EPIT1->LR = value; /* 计数值 */
-    EPIT1->CR |= (1<<0); /* 打开定时器 */
+    EPIT2->CR &= ~(1<<0); /* 先关闭定时器 */
+    EPIT2->LR = value; /* 计数值 */
+    EPIT2->CR |= (1<<0); /* 打开定时器 */
 }
 
 
 
-void Irq_Epit1_keyfilter__Hander(unsigned int gicciar ,void *param)
+void Irq_Epit2_keyfilter__Hander(unsigned int gicciar ,void *param)
 {
     static unsigned int beep_status = 0;
-    if(EPIT1->SR & (1<<0)) /* 判断比较事件发生 */   
+    if(EPIT2->SR & (1<<0)) /* 判断比较事件发生 */   
     {   
         filtertimer_stop();         //停止定时器
         if (gpio_read_pin(GPIO1,18) == 0)
@@ -95,7 +95,7 @@ void Irq_Epit1_keyfilter__Hander(unsigned int gicciar ,void *param)
        beep_switch(beep_status);
     }
 
-    EPIT1->SR |= 1<<0; /* 清除中断标志位 */
+    EPIT2->SR |= 1<<0; /* 清除中断标志位 */
 
 }
 
