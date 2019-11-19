@@ -5,7 +5,7 @@ LD 				=	$(CROSS_COMPILE)ld
 OBJCOPY 		=	$(CROSS_COMPILE)objcopy 
 DUMP			=	$(CROSS_COMPILE)objdump
 
-TARGET			?=	OBJ/KEYFILTER
+TARGET			?=	OBJ/DELAY
 
 INCDIRS 		:=	IMX6ULL \
 					PRO	\

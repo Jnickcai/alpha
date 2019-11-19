@@ -1,7 +1,7 @@
 #ifndef __DELAY_H
 
 #define __DELAY_H
-
+#include "imx6ull.h"
 
 /*CCM_CCGR regiseter address*/
 #define CCM_CCGR0  *((volatile unsigned int*)0X020C4068)
@@ -15,6 +15,9 @@
 
 void sys_init(void);
 
+void delay_init();
+void delay_us(unsigned int delay_us);
+void delay_short(volatile unsigned int n);
 void delay_ms(volatile unsigned int n);
 
 
