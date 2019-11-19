@@ -11,7 +11,8 @@
 			"bsp_gpio.h": "c",
 			"bsp_exti.h": "c",
 			"bsp_int.h": "c",
-			"imx6ull.h": "c"
+			"imx6ull.h": "c",
+			"delay.h": "c"
 		}
 	}
 }

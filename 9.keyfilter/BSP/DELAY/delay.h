@@ -1,7 +1,7 @@
 #ifndef __DELAY_H
 
 #define __DELAY_H
-
+#include "imx6ull.h"
 
 /*CCM_CCGR regiseter address*/
 #define CCM_CCGR0  *((volatile unsigned int*)0X020C4068)
