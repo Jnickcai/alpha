@@ -17,11 +17,9 @@ int main(void)
     int_init();         //中断初始化  
     sys_colock_init();  //主频初始化
     sys_init();         //打开所有时钟开关
-    epit_init(0, 66000000/2);//定时器初始化
-    usrt1_init(); //串口初始化
-    key_filter_init();  //按键初始化，定时器消抖
     led_init();         //LED初始化
-    beep_init();
+    epit_init(0, 66000000/10);//定时器初始化    led 100ms
+    usrt1_init(); //串口初始化
     while(1)
     {   
         Uart_Send_String("请输入一个字符");
@@ -29,6 +27,7 @@ int main(void)
         Uart_Send_String("\r\n");
         Uart_Send_String("输入的字符为：");
         Uart_Send_char(a);
+        Uart_Send_String("\r\n");
     }
     return 0;
 }
